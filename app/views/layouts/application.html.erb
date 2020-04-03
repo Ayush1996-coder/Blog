@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Blog app </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Blog", '#', id: "logo" %>
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+               <% if !current_user.nil? %> 
+                <li><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li>
+              <% end %>
+            </ul>
+          </nav>
+      </div>
+    </header>
+    <div class="container">
+      <%= render 'layouts/alerts'%>
+    </div>      
+    <%= yield %>
+  </body>
+</html>
