@@ -1,22 +1,8 @@
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
 <p>
   <strong>Body:</strong>
-  <%= @post.body %>
+  <%= @post.content %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user.email.split('@')[0].capitalize %>
-</p>
+<%= link_to "Add a Post", new_post_path, class: "btn btn-lg btn-primary"%>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-<%= link_to 'Add a comment', new_comment_path %>
-
-<%= link_to 'Show all comments', comments_path %>
+<%= link_to 'Show all Posts', posts_path, class: "btn btn-lg btn-primary" %>
