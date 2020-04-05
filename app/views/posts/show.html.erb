@@ -2,6 +2,14 @@
   <strong>Body:</strong>
   <%= @post.content %>
 </p>
+      <br>
+    <div class="col-md-8">        
+      <h2> Comments </h2>
+      <%= render 'comments/comment' %>
+      <h3>Add a Comment: </h3>
+      <%= render 'comments/form'%>       
+    </div>
+    <br>
 
 <%= link_to "Add a Post", new_post_path, class: "btn btn-lg btn-primary"%>
 

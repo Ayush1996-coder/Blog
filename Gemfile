@@ -6,6 +6,8 @@ ruby '2.7.0'
 
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'delayed_job_active_record'
+gem 'jquery-turbolinks'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use sqlite3 as the database for Active Record

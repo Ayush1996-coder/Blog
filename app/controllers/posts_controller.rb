@@ -29,6 +29,8 @@ class PostsController < ApplicationController
 	def show
 		  @post = current_user.posts.find_by_id(params[:id])
 		  @posts = current_user.posts
+		  @comment = Comment.new
+		  @comments = @post.comments
 	  end
 
 	private
