@@ -27,18 +27,18 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		@post = current_user.posts.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
+		@post = current_user.posts.find(params[:id])
 		@post.update(posts_params)
 		flash[:success] = 'Post id updated'
 		redirect_to @post
 	end
 
 	def show
-		@post = current_user.posts.find_by_id(params[:id])
+		@post = Post.find_by_id(params[:id])
 	  @posts = current_user.posts
 	  @comment = Comment.new
 	  @comments = @post.comments
