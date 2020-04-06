@@ -6,13 +6,13 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		  @post = current_user.posts.build(posts_params)
-		  if @post.save
-			  flash.now[:success] = "Your blog has been created and posted to your profile page....."
-			  redirect_to @post
-		  else
-			  render 'new'
-			end
+		@post = current_user.posts.build(posts_params)
+		if @post.save
+		  flash.now[:success] = "Your blog has been created and posted to your profile page....."
+		  redirect_to @post
+		else
+		  render 'new'
+		end
 	end
 
 	def destroy
@@ -33,16 +33,16 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 		@post.update(posts_params)
-			flash[:success] = 'Post id updated'
-			redirect_to @post
+		flash[:success] = 'Post id updated'
+		redirect_to @post
 	end
 
 	def show
-		  @post = current_user.posts.find_by_id(params[:id])
-		  @posts = current_user.posts
-		  @comment = Comment.new
-		  @comments = @post.comments
-	  end
+		@post = current_user.posts.find_by_id(params[:id])
+	  @posts = current_user.posts
+	  @comment = Comment.new
+	  @comments = @post.comments
+  end
 
 	private
 	def posts_params
