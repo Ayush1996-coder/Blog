@@ -26,6 +26,17 @@ class PostsController < ApplicationController
 		@post = Post.new(params[:post])
 	end
 
+	def edit
+		@post = Post.find(params[:id])
+	end
+
+	def update
+		@post = Post.find(params[:id])
+		@post.update(posts_params)
+			flash[:success] = 'Post id updated'
+			redirect_to @post
+	end
+
 	def show
 		  @post = current_user.posts.find_by_id(params[:id])
 		  @posts = current_user.posts
