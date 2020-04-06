@@ -1,8 +1,11 @@
 <li id="post-<%= post.id %>">
+  <b>Post By:-   <%= post.user.email %> </b>
+  <p>
+    
+  </p>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <b>Post By:-   <%= post.user.email %> </b>
     <% if current_user %>
       <%= link_to "delete", post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
       <%= link_to 'show post', post_path(post), class: "btn btn-lg btn-primary" %>

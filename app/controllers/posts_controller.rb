@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
 	def create
 		@post = current_user.posts.build(posts_params)
-		if @post.save
+	  if @post.save
 		  flash.now[:success] = "Your blog has been created and posted to your profile page....."
 		  redirect_to @post
 		else
@@ -27,11 +27,11 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		@post = current_user.posts.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
+		@post = current_user.posts.find(params[:id])
 		@post.update(posts_params)
 		flash[:success] = 'Post id updated'
 		redirect_to @post
