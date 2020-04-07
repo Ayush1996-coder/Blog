@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :set_post_id_for_comments, only: [:create, :destroy]
+  
 	def create
-		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(comments_params)
 		if @comment.save
       redirect_to @post
@@ -10,7 +11,6 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@post = Post.find(params[:post_id])
 		@comment = Comment.find(params[:id])
 		@comment.destroy
 		redirect_to @post
@@ -20,4 +20,9 @@ class CommentsController < ApplicationController
 	def comments_params
 		params.require(:comment).permit(:name, :body)
 	end
+
+  private
+  def set_post_id_for_comments
+    @post = Post.find(params[:post_id])
+  end
 end

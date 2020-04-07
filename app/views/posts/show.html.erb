@@ -1,3 +1,4 @@
+<h1><%= current_user.name %></h1>
 <p>
   <strong>Body:</strong>
   <%= @post.content %>
@@ -10,9 +11,11 @@
   <%= render 'comments/form'%>       
 </div>
 <br>
-
 <%= link_to "Add a Post", new_post_path, class: "btn btn-lg btn-primary"%>
 
 <%= link_to 'Show all Posts', posts_path, class: "btn btn-lg btn-primary" %>
 
-<%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-lg btn-primary"%>
+<% if current_user.id == @post.user_id %>
+  <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-lg btn-primary"%>
+  <%= link_to "delete", @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
+<% end %>

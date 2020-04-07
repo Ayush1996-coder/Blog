@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:destroy, :edit, :update]
 	before_action :authenticate_user!, except: [:show, :index]
 
 	def index
@@ -16,7 +17,6 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post = current_user.posts.find(params[:id])
 		@post.delete
 		flash[:success] = "Your Blog has been deleted successfully."
 		redirect_to @post
@@ -27,19 +27,19 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = current_user.posts.find(params[:id])
 	end
 
 	def update
-		@post = current_user.posts.find(params[:id])
-		@post.update(posts_params)
-		flash[:success] = 'Post id updated'
-		redirect_to @post
+		if @post.update(posts_params)
+		  flash[:success] = 'Your Post is updated'
+		  redirect_to @post
+    else
+      render 'edit'
+    end
 	end
 
 	def show
 		@post = Post.find_by_id(params[:id])
-	  @posts = current_user.posts
 	  @comment = Comment.new
 	  @comments = @post.comments
   end
@@ -48,4 +48,9 @@ class PostsController < ApplicationController
 	def posts_params
 		params.require(:post).permit(:content)
 	end
+
+  private
+  def set_post
+    @post = current_user.posts.find(params[:id])
+  end
 end

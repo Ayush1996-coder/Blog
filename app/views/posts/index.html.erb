@@ -1,5 +1,5 @@
 <% if current_user %>
-<h3></a> Posts (<%= current_user.posts.count %>)</h3>
+<h3></a><%= current_user.name %>'s  posts on blog app(<%= current_user.posts.count %>)</h3>
 <% end %>
 <ol class="posts">
   <%= render @posts %>
