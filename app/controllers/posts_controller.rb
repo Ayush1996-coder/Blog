@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post.delete
+		@post.destroy
 		flash[:success] = "Your Blog has been deleted successfully."
 		redirect_to @post
 	end
@@ -45,11 +45,11 @@ class PostsController < ApplicationController
   end
 
 	private
+
 	def posts_params
 		params.require(:post).permit(:content)
 	end
 
-  private
   def set_post
     @post = current_user.posts.find(params[:id])
   end
